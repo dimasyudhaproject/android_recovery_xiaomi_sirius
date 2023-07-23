@@ -9,6 +9,4 @@ PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/twrp_sirius.mk
 
 COMMON_LUNCH_CHOICES := \
-    twrp_sirius-user \
-    twrp_sirius-userdebug \
     twrp_sirius-eng
