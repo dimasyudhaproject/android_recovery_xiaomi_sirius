@@ -4,3 +4,8 @@
 #
 # SPDX-License-Identifier: Apache-2.0
 #
+
+# Decryption
+PRODUCT_PACKAGES_ENG += \
+    qcom_decrypt \
+    qcom_decrypt_fbe
