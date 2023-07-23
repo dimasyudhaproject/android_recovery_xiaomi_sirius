@@ -38,25 +38,32 @@ TARGET_SCREEN_DENSITY := 420
 # Kernel
 BOARD_BOOTIMG_HEADER_VERSION := 1
 BOARD_KERNEL_BASE := 0x00000000
-BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 earlycon=msm_geni_serial,0xA90000 androidboot.hardware=qcom androidboot.usbcontroller=a600000.dwc3 androidboot.console=ttyMSM0 msm_rtb.filter=0x237 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 service_locator.enable=1 androidboot.configfs=true loop.max_part=7 swiotlb=1 androidboot.boot_devices=soc/7c4000.sdhci androidboot.super_partition=system buildvariant=userdebug
+BOARD_KERNEL_CMDLINE := console=ttyMSM0,115200n8 \
+                        earlycon=msm_geni_serial,0xA90000 \
+                        androidboot.hardware=qcom \
+                        androidboot.usbcontroller=a600000.dwc3 \
+                        androidboot.console=ttyMSM0 \
+                        msm_rtb.filter=0x237 \
+                        ehci-hcd.park=3 \
+                        lpm_levels.sleep_disabled=1 \
+                        service_locator.enable=1 \
+                        androidboot.configfs=true \
+                        loop.max_part=7 \
+                        swiotlb=1 \
+                        androidboot.boot_devices=soc/7c4000.sdhci \
+                        androidboot.super_partition=system \
+                        buildvariant=userdebug \
+                        androidboot.selinux=permissive
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_RAMDISK_OFFSET := 0x01000000
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_MKBOOTIMG_ARGS += --header_version $(BOARD_BOOTIMG_HEADER_VERSION)
 BOARD_MKBOOTIMG_ARGS += --ramdisk_offset $(BOARD_RAMDISK_OFFSET)
 BOARD_MKBOOTIMG_ARGS += --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
-BOARD_KERNEL_IMAGE_NAME := Image
+BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 BOARD_KERNEL_SEPARATED_DTBO := true
-TARGET_KERNEL_CONFIG := sirius_defconfig
-TARGET_KERNEL_SOURCE := kernel/xiaomi/sirius
-
-# Kernel - prebuilt
-TARGET_FORCE_PREBUILT_KERNEL := true
-ifeq ($(TARGET_FORCE_PREBUILT_KERNEL),true)
-TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/kernel
-BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
-BOARD_KERNEL_SEPARATED_DTBO := 
-endif
+TARGET_KERNEL_CONFIG := $(TARGET_DEVICE)_defconfig
+TARGET_KERNEL_SOURCE := kernel/xiaomi/$(TARGET_DEVICE)
 
 # Partitions
 BOARD_FLASH_BLOCK_SIZE := 262144 # (BOARD_KERNEL_PAGESIZE * 64)
